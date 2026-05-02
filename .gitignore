@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Тестовые артефакты
+reports/
+screenshots/
+allure_results/
+.pytest_cache/
+.tox/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Виртуальное окружение
+venv/
+env/
+ENV/
