@@ -14,6 +14,21 @@ class BasePage:
             EC.presence_of_element_located(locator)
         )
 
+    def find_elements(self, locator, timeout=10):
+        """Поиск элементов с ожиданием"""
+        return WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_all_elements_located(locator)
+        )
+
+    def find_elements_safe(self, locator, timeout=2):
+        """Безопасный поиск - возвращает пустой список если элементов нет"""
+        try:
+            return WebDriverWait(self.driver, timeout).until(
+                EC.presence_of_all_elements_located(locator)
+            )
+        except TimeoutException:
+            return []
+
     def click(self, locator):
         """Клик по элементу"""
         element = self.wait.until(EC.element_to_be_clickable(locator))

@@ -1,4 +1,8 @@
 {
+	"reg_firstname" : "regtestfname",
+	"reg_lastname" : "regtestlname",
+	"reg_username" : "regtestuname",
+	"reg_password" : "Password1!",
 	"username" : "Ivanovaqa",
 	"password" : "Ivanovaqa1!"
 }

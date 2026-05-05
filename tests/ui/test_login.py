@@ -1,3 +1,5 @@
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 import allure
 import pytest
 from locators.login_locators import LoginLocators
@@ -12,7 +14,10 @@ class TestLogin:
 
         login_page.login(test_data["username"], test_data["password"])
 
-        assert login_page.is_login_successful(), "Login failed"
+        wait = WebDriverWait(driver, 5)
+        wait.until(EC.url_to_be("https://demoqa.com/profile"))
+
+        assert driver.current_url == "https://demoqa.com/profile"
 
     @allure.step("Логин с невалидными данными")
     @pytest.mark.parametrize(
@@ -70,3 +75,15 @@ class TestLogin:
                 and classes_p is not None
                 and "is-invalid" in classes_p
             ), "Error class not added to username & password inputs"
+
+    @allure.step("Переход на страницу регистрации по нажатию на кнопку 'New User'")
+    def test_registration_button(self, driver, base_url):
+        driver.get(f"{base_url}/login")
+        login_page = LoginPage(driver)
+
+        login_page.click_registration_button()
+
+        wait = WebDriverWait(driver, 5)
+        wait.until(EC.url_to_be("https://demoqa.com/register"))
+
+        assert driver.current_url == "https://demoqa.com/register"
