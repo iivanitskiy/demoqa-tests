@@ -48,6 +48,7 @@ allure serve allure_results
 ```
 project/
 │
+├── allure_results/	 # результаты тестов
 ├── configuration/   # конфигурация проекта
 ├── locators/        # локаторы элементов
 ├── page/            # Page Object Model (классы страниц)
