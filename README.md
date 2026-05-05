@@ -48,10 +48,11 @@ allure serve allure_results
 ```
 project/
 │
+├── api/             # кклассы API (Page Object Model)
 ├── allure_results/	 # результаты тестов
 ├── configuration/   # конфигурация проекта
 ├── locators/        # локаторы элементов
-├── page/            # Page Object Model (классы страниц)
+├── page/            # классы страниц (Page Object Model)
 ├── reports/         # отчеты
 ├── screenshots/     # скриншоты
 ├── test_data/       # тестовые данные
