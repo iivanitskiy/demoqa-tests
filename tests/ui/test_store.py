@@ -9,7 +9,7 @@ from pages.store_page import StorePage
 
 class TestStore:
 
-    @allure.step("Проверка отображения имени пользователя после логина")
+    @allure.title("Проверка отображения имени пользователя после логина")
     def test_username_displayed(self, base_url, logged_in_driver):
         logged_in_driver.get(f"{base_url}/books")
 
@@ -22,7 +22,7 @@ class TestStore:
             username == "Ivanovaqa"
         ), f"Ожидалось имя 'Ivanovaqa', получено '{username}'"
 
-    @allure.step("Переход на страницу книги")
+    @allure.title("Переход на страницу книги")
     def test_go_to_book(self, base_url, logged_in_driver):
         logged_in_driver.get(f"{base_url}/books")
         store_page = StorePage(logged_in_driver)
@@ -33,7 +33,7 @@ class TestStore:
             in logged_in_driver.current_url
         ), f"Ожидался URL с /books/Git, получен {logged_in_driver.current_url}"
 
-    @allure.step("Поиск книги по названию")
+    @allure.title("Поиск книги по названию")
     @pytest.mark.parametrize(
         "search_text",
         [
@@ -48,7 +48,7 @@ class TestStore:
         store_page.search_button()
         assert store_page.get_book(StoreLocators.BOOK)
 
-    @allure.step("Выход из профиля")
+    @allure.title("Выход из профиля")
     def test_logout(self, base_url, logged_in_driver):
         logged_in_driver.get(f"{base_url}/books")
         store_page = StorePage(logged_in_driver)

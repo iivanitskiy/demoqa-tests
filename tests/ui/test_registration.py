@@ -8,7 +8,7 @@ from pages.registration_page import RegistrationPage
 
 class TestRegistration:
 
-    @allure.step("Регистрация с валидными данными")
+    @allure.title("Регистрация с валидными данными")
     def test_successful_registration(self, driver, base_url, test_data):
         driver.get(f"{base_url}/register")
         registration_page = RegistrationPage(driver)
@@ -31,7 +31,7 @@ class TestRegistration:
         wait.until(EC.url_to_be("https://demoqa.com/login"))
         assert driver.current_url == "https://demoqa.com/login"
 
-    @allure.step("Регистрация с невалидными данными")
+    @allure.title("Регистрация с невалидными данными")
     @pytest.mark.parametrize(
         "firstname,lastname,username,password,expected_error",
         [
@@ -55,7 +55,7 @@ class TestRegistration:
 
         assert expected_error in error
 
-    @allure.step("Логин с пустыми данными")
+    @allure.title("Логин с пустыми данными")
     @pytest.mark.parametrize(
         "firstname,lastname,username,password",
         [
@@ -93,7 +93,7 @@ class TestRegistration:
         assert classes_n is not None and "is-invalid" in classes_n
         assert classes_p is not None and "is-invalid" in classes_p
 
-    @allure.step("Переход на страницу логина по нажатию на кнопку 'Back to login'")
+    @allure.title("Переход на страницу логина по нажатию на кнопку 'Back to login'")
     def test_login_button(self, driver, base_url):
         driver.get(f"{base_url}/register")
         registration_page = RegistrationPage(driver)

@@ -38,7 +38,7 @@ pytest tests
 
 ### 4. Просмотр отчета Allure:
 ```bash
-allure serve
+allure serve allure_results
 ```
 
 ---

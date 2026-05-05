@@ -10,7 +10,7 @@ from pages.book_page import BookPage
 
 class TestBook:
 
-    @allure.step("Проверка отображения имени пользователя после логина")
+    @allure.title("Проверка отображения имени пользователя после логина")
     def test_username_displayed(self, base_url, logged_in_driver):
         logged_in_driver.get(f"{base_url}/books?search=9781449325862")
 
@@ -32,7 +32,7 @@ class TestBook:
         except TimeoutException:
             return True
 
-    @allure.step("Проверка отображения названия книги")
+    @allure.title("Проверка отображения названия книги")
     def test_book_title_displayed(self, base_url, logged_in_driver):
         logged_in_driver.get(f"{base_url}/books?search=9781449325862")
 
@@ -47,7 +47,7 @@ class TestBook:
             book_title == "Git Pocket Guide"
         ), f"Ожидалось 'Git Pocket Guide', получено '{book_title}'"
 
-    @allure.step("Выход из профиля")
+    @allure.title("Выход из профиля")
     def test_logout(self, base_url, logged_in_driver):
         logged_in_driver.get(f"{base_url}/books?search=9781449325862")
         book_page = BookPage(logged_in_driver)

@@ -5,9 +5,11 @@ import pytest
 from locators.login_locators import LoginLocators
 from pages.login_page import LoginPage
 
+@allure.feature("Authentication")
+@allure.story("Login")
 class TestLogin:
 
-    @allure.step("Логин с валидными данными")
+    @allure.title("Логин с валидными данными")
     def test_successful_login(self, driver, base_url, test_data):
         driver.get(f"{base_url}/login")
         login_page = LoginPage(driver)
@@ -19,7 +21,7 @@ class TestLogin:
 
         assert driver.current_url == "https://demoqa.com/profile"
 
-    @allure.step("Логин с невалидными данными")
+    @allure.title("Логин с невалидными данными")
     @pytest.mark.parametrize(
         "username,password,expected_error",
         [
@@ -37,7 +39,7 @@ class TestLogin:
 
         assert expected_error in error
 
-    @allure.step("Логин с пустыми данными")
+    @allure.title("Логин с пустыми данными")
     @pytest.mark.parametrize(
         "username,password,expected_error",
         [
@@ -76,7 +78,7 @@ class TestLogin:
                 and "is-invalid" in classes_p
             ), "Error class not added to username & password inputs"
 
-    @allure.step("Переход на страницу регистрации по нажатию на кнопку 'New User'")
+    @allure.title("Переход на страницу регистрации по нажатию на кнопку 'New User'")
     def test_registration_button(self, driver, base_url):
         driver.get(f"{base_url}/login")
         login_page = LoginPage(driver)

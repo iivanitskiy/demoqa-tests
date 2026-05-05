@@ -9,7 +9,7 @@ from pages.profile_page import ProfilePage
 
 class TestProfile:
 
-    @allure.step("Проверка отображения имени пользователя после логина")
+    @allure.title("Проверка отображения имени пользователя после логина")
     def test_username_displayed(self, logged_in_driver):
         """Тест проверяет, что после успешного логина отображается имя пользователя"""
         profile_page = ProfilePage(logged_in_driver)
@@ -19,7 +19,7 @@ class TestProfile:
         username = profile_page.get_username()
         assert username == "Ivanovaqa", f"Ожидалось имя 'Ivanovaqa', получено '{username}'"
 
-    @allure.step("Переход на страницу книги")
+    @allure.title("Переход на страницу книги")
     def test_go_to_book(self, logged_in_driver):
         profile_page = ProfilePage(logged_in_driver)
         
@@ -27,7 +27,7 @@ class TestProfile:
         assert "https://demoqa.com/books?search=9781449325862" in logged_in_driver.current_url, \
             f"Ожидался URL с /books/Git, получен {logged_in_driver.current_url}"
 
-    @allure.step("Поиск книги по названию")
+    @allure.title("Поиск книги по названию")
     @pytest.mark.parametrize("search_text", [
         ("Git"),
     ])
@@ -38,7 +38,7 @@ class TestProfile:
         profile_page.search_button()
         assert profile_page.get_book(ProfileLocators.BOOK)
 
-    @allure.step("Выход из профиля")
+    @allure.title("Выход из профиля")
     def test_logout(self, logged_in_driver):
         profile_page = ProfilePage(logged_in_driver)
         
@@ -47,7 +47,7 @@ class TestProfile:
         assert "/login" in logged_in_driver.current_url, \
             f"Ожидался URL с /login, получен {logged_in_driver.current_url}"
 
-    @allure.step("Переход в магазин книг")
+    @allure.title("Переход в магазин книг")
     def test_go_to_store(self, logged_in_driver):
         profile_page = ProfilePage(logged_in_driver)
         
@@ -56,7 +56,7 @@ class TestProfile:
         assert "/books" in logged_in_driver.current_url, \
             f"Ожидался URL с /books, получен {logged_in_driver.current_url}"
 
-    @allure.step("Удаление книги")
+    @allure.title("Удаление книги")
     def test_delete_book(self, logged_in_driver):
         profile_page = ProfilePage(logged_in_driver)
         
@@ -75,7 +75,7 @@ class TestProfile:
         assert count - 1 == len(profile_page.get_books_rows(ProfileLocators.BOOKS_ROWS)) , \
             f"Ожидалось удаление книги, получено {len(profile_page.get_books_rows(ProfileLocators.BOOKS_ROWS))}"
 
-    @allure.step("Удаление всех книг")
+    @allure.title("Удаление всех книг")
     def test_delete_all_books(self, logged_in_driver):
         profile_page = ProfilePage(logged_in_driver)
         
@@ -88,7 +88,7 @@ class TestProfile:
         book_rows = profile_page.get_books_rows(ProfileLocators.BOOKS_ROWS)      
         assert book_rows == [], f"Ожидалось удаление всех книг, получено {len(book_rows)} книг"
 
-    @allure.step("Удаление учетной записи")
+    @allure.title("Удаление учетной записи")
     def test_delete_account(self, logged_in_driver):
         profile_page = ProfilePage(logged_in_driver)
         
